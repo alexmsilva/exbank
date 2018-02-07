@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ExBank - Transactions</title>
+  
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+</head>
+<body class="container">
+  
+  <h1 class="text-center">Transactions</h1>
+
+  <div id="message-view"></div>
+  
+  <form class="form" onsubmit="transactionController.add(event)">
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" id="date" class="form-control" required autofocus />        
+    </div>    
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" min="1" step="1" id="amount" class="form-control" value="1" required />
+    </div>
+    <div class="form-group">
+      <label for="value">Value</label>
+      <input id="value" type="number" class="form-control"  min="1.00" step="0.1" value="1.00" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Add</button>
+  </form>
+
+  <br>
+  
+  <div class="text-center">
+    <button class="btn btn-primary text-center" type="button">Import Transactions</button>
+    <button class="btn btn-primary text-center" type="button" onclick="transactionController.delete(event)">
+      Delete
+    </button>
+  </div>
+
+  <br>
+  <br>
+  
+  <div id="transaction-list-view"></div>
+
+  <script type="text/javascript" src="js/app/helpers/DateHelper.js"></script>
+  <script type="text/javascript" src="js/app/models/Message.js"></script>
+  <script type="text/javascript" src="js/app/models/Transaction.js"></script>
+  <script type="text/javascript" src="js/app/models/TransactionList.js"></script>
+  <script type="text/javascript" src="js/app/controllers/TransactionController.js"></script>
+  <script type="text/javascript" src="js/app/views/View.js"></script>
+  <script type="text/javascript" src="js/app/views/MessageView.js"></script>
+  <script type="text/javascript" src="js/app/views/TransactionListView.js"></script>
+
+  <script type="text/javascript">
+    let transactionController = new TransactionController();
+  </script>
+  
+</body>
+</html>
