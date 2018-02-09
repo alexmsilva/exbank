@@ -13,9 +13,8 @@ class TransactionController
         this._inputDate = $('#date');
         this._inputAmount = $('#amount');
         this._inputValue = $('#value');
-        this._transactionList = new TransactionList(this, function(model) {
-            this._transactionListView.update(model);
-        });
+        this._transactionList = new TransactionList(model => 
+            this._transactionListView.update(model));
 
         this._transactionListView = new TransactionListView($('#transaction-list-view'));
         this._transactionListView.update(this._transactionList);
