@@ -6,9 +6,12 @@ class TransactionList
     /**
      *
      */
-    constructor()
+    constructor(context, callback)
     {
         this._transactions = [];
+
+        this._context = context;
+        this._callback = callback;
     }
 
     /**
@@ -17,6 +20,8 @@ class TransactionList
     add(transaction)
     {
         this._transactions.push(transaction);
+        // by by SOLID
+        Reflect.apply(this._callback, this._context, [this]);
     }
 
     /**
@@ -33,5 +38,7 @@ class TransactionList
     delete()
     {
         this._transactions = [];
+        // by by SOLID
+        //Reflect.apply(this._callback, this._context, [self]);
     }
 }

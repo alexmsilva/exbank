@@ -13,7 +13,9 @@ class TransactionController
         this._inputDate = $('#date');
         this._inputAmount = $('#amount');
         this._inputValue = $('#value');
-        this._transactionList = new TransactionList();
+        this._transactionList = new TransactionList(this, function(model) {
+            this._transactionListView.update(model);
+        });
 
         this._transactionListView = new TransactionListView($('#transaction-list-view'));
         this._transactionListView.update(this._transactionList);
@@ -31,7 +33,6 @@ class TransactionController
         event.preventDefault();
 
         this._transactionList.add(this._createTransaction());
-        this._transactionListView.update(this._transactionList);
 
         this._message.text = 'Transaction successfuly added.';
         this._messageView.update(this._message);
