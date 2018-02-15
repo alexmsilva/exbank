@@ -6,10 +6,9 @@ class TransactionList
     /**
      *
      */
-    constructor(callback)
+    constructor()
     {
         this._transactions = [];
-        this._callback = callback; // to update
     }
 
     /**
@@ -18,8 +17,6 @@ class TransactionList
     add(transaction)
     {
         this._transactions.push(transaction);
-        // by by SOLID
-        this._callback(this);
     }
 
     /**
@@ -36,7 +33,5 @@ class TransactionList
     delete()
     {
         this._transactions = [];
-        // by by SOLID
-        this._callback(this);
     }
 }
