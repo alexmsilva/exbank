@@ -8,30 +8,20 @@ class TransactionController
      */
     constructor()
     {
-        let self = this;
         let $ = document.querySelector.bind(document);
 
         this._inputDate = $('#date');
         this._inputAmount = $('#amount');
         this._inputValue = $('#value');
 
-        this._transactionList = ProxyFactory.create(
+        this._transactionList = new Bind(
             new TransactionList(),
-            ['add', 'delete'],
-            model => this._transactionListView.update(model)
+            new TransactionListView($('#transaction-list-view')),
+            'add',
+            'delete'
         );
 
-        this._transactionListView = new TransactionListView($('#transaction-list-view'));
-        this._transactionListView.update(this._transactionList); // how to avoid this
-
-        this._message = ProxyFactory.create(
-            new Message(),
-            ['text'],
-            (model) => this._messageView.update(model)
-        );
-
-        this._messageView = new MessageView($('#message-view'));
-        this._messageView.update(this._message); // how to avoid this
+        this._message = new Bind(new Message(), new MessageView($('#message-view')), 'text');
     }
 
     /**
